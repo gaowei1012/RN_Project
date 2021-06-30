@@ -8,12 +8,35 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {DeviceStorage} from '../utils/storage';
+import {showToast} from '../utils/toast';
 
 const Login = props => {
   const [str, setStr] = useState('');
   const [detail, setDetail] = useState('');
 
   const [is_show, setIsShow] = useState(false);
+
+  useEffect(() => {
+    set_val();
+  }, []);
+
+  useEffect(() => {
+    // 保存 _key
+    async function save() {
+      await DeviceStorage.set('test1', JSON.stringify('123'));
+    }
+    save();
+  }, []);
+
+  useEffect(() => {
+    // 保存 _key
+    async function get() {
+      const test1 = await DeviceStorage.get('test1');
+      console.log('tset1=====>>>', test1);
+    }
+    get();
+  }, []);
+
   // 获取焦点时候输出
   const onBlur = () => {
     const key = 'hello';
@@ -24,10 +47,6 @@ const Login = props => {
     }
   };
 
-  useEffect(() => {
-    set_val();
-  }, []);
-
   // 设置缓存值
   const set_val = async () => {
     await DeviceStorage.set('test', JSON.stringify('hello storage'));
@@ -36,6 +55,7 @@ const Login = props => {
   // 获取缓存值
   const get_val = async () => {
     const test = await DeviceStorage.get('test');
+    const test1 = await DeviceStorage.get('test1');
     if (test) {
       setDetail(test);
     }
@@ -68,6 +88,9 @@ const Login = props => {
           <Text>点击获取storage的值</Text>
         </TouchableOpacity>
         <Text style={styles.bottom}>我是storage获取的值：{detail}</Text>
+        <TouchableOpacity onPress={() => showToast('显示Toast成功!')}>
+          <Text>显示Toast</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
