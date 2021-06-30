@@ -7,7 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {DeviceStorage} from './utils/storage';
+import {DeviceStorage} from '../utils/storage';
 
 const Login = props => {
   const [str, setStr] = useState('');
