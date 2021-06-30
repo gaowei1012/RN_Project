@@ -29,7 +29,7 @@ const Login = props => {
   }, []);
 
   useEffect(() => {
-    // 保存 _key
+    // 获取 _key
     async function get() {
       const test1 = await DeviceStorage.get('test1');
       console.log('tset1=====>>>', test1);
