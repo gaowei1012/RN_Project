@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  Image,
   TextInput,
   StyleSheet,
   TouchableOpacity,
@@ -91,6 +92,9 @@ const Login = props => {
         <TouchableOpacity onPress={() => showToast('显示Toast成功!')}>
           <Text>显示Toast</Text>
         </TouchableOpacity>
+
+        {/* image */}
+        <Image source={''} resizeMode="cover" />
       </View>
     </SafeAreaView>
   );
